@@ -1,4 +1,4 @@
-name: Simple Echo CI
+name: Run Python Script
 
 on:
   push:
@@ -6,15 +6,28 @@ on:
       - master
 
 jobs:
-  echo-job:
+    run-python:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout your repository code
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Run Echo Statements
+      # Step 2: Set up Python environment (using Python 3.12)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Step 3: Install dependencies
+      - name: Install Dependencies
         run: |
-          echo "Hello from the master branch push!"
-          echo "This is a simple automated test."
-          echo "Everything ran successfully!"
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # Step 4: Run your Python script
+      - name: Run Script
+        run: |
+          python main.py
+          
