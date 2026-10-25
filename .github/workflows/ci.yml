@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-    run-python:
+  run-python:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,4 +30,3 @@ jobs:
       - name: Run Script
         run: |
           python main.py
-          
