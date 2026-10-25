@@ -1,0 +1,20 @@
+name: Simple Echo CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  echo-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Echo Statements
+        run: |
+          echo "Hello from the master branch push!"
+          echo "This is a simple automated test."
+          echo "Everything ran successfully!"
